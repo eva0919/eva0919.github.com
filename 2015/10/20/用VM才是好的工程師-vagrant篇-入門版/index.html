@@ -1,0 +1,437 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Mikeva">
+    <title>用VM才是好的工程師-vagrant篇(入門版) - Mikeva</title>
+    <meta name="author" content="Mike Chen">
+    
+    
+    <meta name="description" content="其實這篇是從以前的blog移植過來發生了一些事情導致我之前的blog檔案損毀這篇覺得很有價值保留因此，就親手慢慢來重新把這篇還原並當做新blog的第一篇。">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="用VM才是好的工程師-vagrant篇(入門版)">
+<meta property="og:url" content="http://yoursite.com/2015/10/20/用VM才是好的工程師-vagrant篇-入門版/index.html">
+<meta property="og:site_name" content="Mikeva">
+<meta property="og:description" content="其實這篇是從以前的blog移植過來發生了一些事情導致我之前的blog檔案損毀這篇覺得很有價值保留因此，就親手慢慢來重新把這篇還原並當做新blog的第一篇。">
+<meta property="og:image" content="http://www.dmuth.org/files/vagrant_hippie.png">
+<meta property="og:updated_time" content="2015-10-21T13:16:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用VM才是好的工程師-vagrant篇(入門版)">
+<meta name="twitter:description" content="其實這篇是從以前的blog移植過來發生了一些事情導致我之前的blog檔案損毀這篇覺得很有價值保留因此，就親手慢慢來重新把這篇還原並當做新blog的第一篇。">
+    
+    
+    
+        <meta property="og:image" content="/assets/images/https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-xpf1/v/t1.0-9/1385793_699317240086719_965516295_n.jpg?oh=681e978846867d3890b04dfa2aba43c4&oe=56703445&__gda__=1450247180_8c072e21e6114262dd761e86b9609259"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/font-awesome.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox-thumbs.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/tranquilpeak.css" type="text/css">
+    <!--STYLES END-->
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="/ ">Mikeva</a>
+    </h1>
+    
+        
+            <a  class="header-right-picture "
+                href="/#about">
+        
+        
+            <img class="header-picture" src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-xpf1/v/t1.0-9/1385793_699317240086719_965516295_n.jpg?oh=681e978846867d3890b04dfa2aba43c4&amp;oe=56703445&amp;__gda__=1450247180_8c072e21e6114262dd761e86b9609259"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="4">
+    
+        <div class="sidebar-profile">
+            <a href="/#about">
+                    <img class="sidebar-profile-picture" src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-xpf1/v/t1.0-9/1385793_699317240086719_965516295_n.jpg?oh=681e978846867d3890b04dfa2aba43c4&amp;oe=56703445&amp;__gda__=1450247180_8c072e21e6114262dd761e86b9609259"/>
+            </a>
+            <span class="sidebar-profile-name">Mike Chen</span>
+        </div>
+    
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/ "
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc">Home</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-categories"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                    <span class="sidebar-button-desc">Categories</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-tags"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc">Tags</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://github.com/eva0919" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc">GitHub</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://www.linkedin.com/profile/preview?locale=en_US&trk=prof-0-sb-preview-primary-button" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+                    <span class="sidebar-button-desc">LinkedIn</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/atom.xml"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+
+            
+            <div id="main" data-behavior="4"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title" itemprop="headline">
+            用VM才是好的工程師-vagrant篇(入門版)
+        </h1>
+    
+    <div class="post-meta">
+    <time itemprop="datePublished" content="Tue Oct 20 2015 20:16:49 GMT+0800">
+	
+		    Oct 20, 2015
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/tech/">tech</a>
+
+
+    
+</div>
+</div>
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <p>其實這篇是從以前的blog移植過來<br>發生了一些事情導致我之前的blog檔案損毀<br>這篇覺得很有價值保留<br>因此，就親手慢慢來重新把這篇還原並當做新blog的第一篇。<br><a id="more"></a></p>
+<p>接了這次的專案，讓我更體會到VM的好，<br>建環境真的是每個工程師的惡夢，<br>VM卻可以解決這個問題，<br>接下來，我會介紹vagrant基本可使用的操作，<br>OK！Here we go!!!!!</p>
+<p><img src="http://www.dmuth.org/files/vagrant_hippie.png"></p>
+<h2 id="零、前置下載作業">零、前置下載作業</h2><hr>
+<p>一開始要下載VirtualBox和vagrant，<br>virtual box官網下載(for free)<br>vagrant官網下載(for free)<br>因為vagrant是與virtualbox合作，<br>也就是說我們等等是用vagrant的指令，<br>而開的vm是virtualbox。 安裝完畢，就正式開始了~</p>
+<h2 id="一、啟動vagrant">一、啟動vagrant</h2><hr>
+<p>接著開始我們的project<br>這邊範例我取名為vagrant_project<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> vagrant_project</span><br><span class="line"><span class="built_in">cd</span> vagrant_project</span><br></pre></td></tr></table></figure></p>
+<p>（這邊是基本的建立資料夾）<br>接著我們要設定一下下我們的vagrant<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vagrant box <span class="built_in">add</span> precise64 <span class="keyword">http</span>://<span class="built_in">files</span>.vagrantup.com/precise64.box</span><br></pre></td></tr></table></figure><br>這邊是在設定vagrant開啟時的預設，<br>precise64是以後對這個box的稱呼，<br>有些人也會使用<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">vagrant</span> <span class="keyword">box </span><span class="keyword">add </span><span class="keyword">base </span>http://files.vagrantup.com/precise64.<span class="keyword">box</span></span><br></pre></td></tr></table></figure><br>而後面的網址是去下載ubuntu 12.04的64bit OS box<br>(vagrant中以box稱呼每一個vm)<br>可以上網查其他的OS box</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">vagrant</span> init precise64</span><br><span class="line">vagrant up</span><br></pre></td></tr></table></figure>
+<p>當下vagrant init時，會在當下資料夾產生一個vagrantfile<br>裡面放了很多vagrant的設定<br>(我們之後再來看這些設定)<br>整個指令的意思大概就是開啟一個新的vm，以precise64(or base)這個box當做VM OS<br>vagrant up則是啟動vm，沒錯！此時我們的vm已經開起來了唷！！！<br>（可以透過vagrant status來看vm現在的狀況） </p>
+<h2 id="二、進入vm開始做些怪怪的事了，嘿嘿～">二、進入vm開始做些怪怪的事了，嘿嘿～</h2><hr>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">vagrant</span> ssh</span><br></pre></td></tr></table></figure>
+<p>這個指令，很清楚就是用ssh去連你剛剛開好的vm<br>接著，<br><figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">\curl</span> <span class="literal">-</span><span class="comment">L</span> <span class="comment">https://get</span><span class="string">.</span><span class="comment">rvm</span><span class="string">.</span><span class="comment">io</span> <span class="comment">|</span> <span class="comment">bash</span> <span class="literal">-</span><span class="comment">s</span> <span class="comment">stable</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">rails</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">autolibs=enabled</span> <span class="comment">#</span> <span class="comment">Or</span><span class="string">,</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">ruby=1</span><span class="string">.</span><span class="comment">9</span><span class="string">.</span><span class="comment">3</span></span><br></pre></td></tr></table></figure><br>好了，現在你的ROR環境就大致完成了<br>系統OS : ubuntu 12.04<br>Ruby : 2.0.0 (之後應該會不斷更新)<br>Rails : 3.2.10 （同上）</p>
+<h2 id="三、更改設定檔，成為萬能的VM">三、更改設定檔，成為萬能的VM</h2><hr>
+<p>開始我們修改一下剛剛的vagrantfile<br>將vagrantfile打開<br>會看到很多已經註解的code<br>接著我來介紹一些簡單我常用的設定<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">config</span><span class="class">.vm</span><span class="class">.network</span> <span class="pseudo">:forwarded_port</span>, <span class="tag">guest</span>: 3000, <span class="tag">host</span>: 8080</span><br></pre></td></tr></table></figure><br>打開這個設定，就是說連到本機端port 8080的話，會幫你自動轉到vm裡面的port 3000<br>更簡單點講就是，在vm開rails s 通常會自動開在port3000，然後再瀏覽器打上localhost:8080<br>就可以看到自己的網頁啦～～～</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">config</span><span class="class">.vm</span><span class="class">.network</span> <span class="pseudo">:private_network</span>, <span class="tag">ip</span>: "192<span class="class">.168</span><span class="class">.33</span><span class="class">.10</span>"</span><br></pre></td></tr></table></figure>
+<p>打開這個設定，就可以透過本機端連ip到VM，<br>從瀏覽器打上192.168.33.10:8080 就可以像上面一樣連到我們的網頁啦～～～～<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">config</span><span class="class">.vm</span><span class="class">.network</span> <span class="pseudo">:public_network</span></span><br></pre></td></tr></table></figure><br>這個設定打開後，VM就可以透過本機端的網路，存取外面的資源<br>當你要讀取外部資料，爬外面網頁時，如果沒有開這個設定<br>有可能造成VM的無法辨識DNS，就無法得到你想要的資料了<br>(因為沒有開就連不到外面的網路，VM就會在本機端找尋你要的路徑，當然DNS就不會是正確的)</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config<span class="class">.vm</span><span class="class">.synced_folder</span> <span class="string">"../vagrant"</span>, <span class="string">"/vagrant_data"</span></span><br></pre></td></tr></table></figure>
+<p>這個功能也很酷！！！<br>就是VM和本機端共享資料夾<br>前面是本機端的資料夾<br>後面就是在VM中的資料夾<br>他會把本機端(../vagrant)資料夾下的檔案都讀進VM中的/vagrant_data這個資料夾裡面 此時，你就可以同步修改某一個地方的code<br>也就是說你可以用本機端的editor去修改<br>在用VM跑，是不是超級方便！！！！</p>
+<p>一起成為VM大師吧～～～！！！！<br>還想學嗎？期待下次你家的小熊教你～～～</p>
+
+            
+                
+
+            
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/tech/">tech</a>
+
+            </div>
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/10/20/用VM才是好的工程師-vagrant篇-入門版/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/10/20/用VM才是好的工程師-vagrant篇-入門版/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/10/20/用VM才是好的工程師-vagrant篇-入門版/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2015 Mike Chen. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/10/20/用VM才是好的工程師-vagrant篇-入門版/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/10/20/用VM才是好的工程師-vagrant篇-入門版/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/10/20/用VM才是好的工程師-vagrant篇-入門版/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+    <ul class="share-options">
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/10/20/用VM才是好的工程師-vagrant篇-入門版/">
+                <i class="fa fa-google-plus"></i><span class="">Share on Google Plus</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/10/20/用VM才是好的工程師-vagrant篇-入門版/">
+                <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/10/20/用VM才是好的工程師-vagrant篇-入門版/">
+                <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+            
+        </div>
+        <!-- Define author's picture -->
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-xpf1/v/t1.0-9/1385793_699317240086719_965516295_n.jpg?oh=681e978846867d3890b04dfa2aba43c4&amp;oe=56703445&amp;__gda__=1450247180_8c072e21e6114262dd761e86b9609259"/>
+        
+            <h4 id="about-card-name">Mike Chen</h4>
+        
+            <h5 id="about-card-bio"><p><a href='http://eva0919.github.io/aboutme'>ABOUT ME</a></p>
+</h5>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>Software Developer</p>
+
+            </h5>
+        
+        
+    </div>
+</div>
+
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="/assets/js/jquery.js" type="text/javascript"></script>
+<script src="/assets/js/jquery.fancybox.js" type="text/javascript"></script>
+<script src="/assets/js/jquery.fancybox-thumbs.js" type="text/javascript"></script>
+<script src="/assets/js/tranquilpeak.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+
+
+</html>
