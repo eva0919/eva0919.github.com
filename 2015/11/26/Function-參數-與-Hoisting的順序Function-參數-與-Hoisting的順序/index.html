@@ -1,0 +1,422 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Mikeva">
+    <title>Function 參數 與 Hoisting的順序Function 參數 與 Hoisting的順序 - Mikeva</title>
+    <meta name="author" content="Mike Chen">
+    
+    
+    <meta name="description" content="這是一個很有趣的議題，至少我查了網路不好找到(因為我找不到，只好自己測試了)底下這邊是一段JS的CODE，可以看一下後，想像它的結果。">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Function 參數 與 Hoisting的順序Function 參數 與 Hoisting的順序">
+<meta property="og:url" content="http://yoursite.com/2015/11/26/Function-參數-與-Hoisting的順序Function-參數-與-Hoisting的順序/index.html">
+<meta property="og:site_name" content="Mikeva">
+<meta property="og:description" content="這是一個很有趣的議題，至少我查了網路不好找到(因為我找不到，只好自己測試了)底下這邊是一段JS的CODE，可以看一下後，想像它的結果。">
+<meta property="og:updated_time" content="2015-11-26T14:51:27.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Function 參數 與 Hoisting的順序Function 參數 與 Hoisting的順序">
+<meta name="twitter:description" content="這是一個很有趣的議題，至少我查了網路不好找到(因為我找不到，只好自己測試了)底下這邊是一段JS的CODE，可以看一下後，想像它的結果。">
+    
+    
+    
+        <meta property="og:image" content="/assets/images/https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-xpf1/v/t1.0-9/1385793_699317240086719_965516295_n.jpg?oh=681e978846867d3890b04dfa2aba43c4&oe=56703445&__gda__=1450247180_8c072e21e6114262dd761e86b9609259"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/font-awesome.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox-thumbs.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/tranquilpeak.css" type="text/css">
+    <!--STYLES END-->
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="/ ">Mikeva</a>
+    </h1>
+    
+        
+            <a  class="header-right-picture "
+                href="/#about">
+        
+        
+            <img class="header-picture" src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-xpf1/v/t1.0-9/1385793_699317240086719_965516295_n.jpg?oh=681e978846867d3890b04dfa2aba43c4&amp;oe=56703445&amp;__gda__=1450247180_8c072e21e6114262dd761e86b9609259"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="4">
+    
+        <div class="sidebar-profile">
+            <a href="/#about">
+                    <img class="sidebar-profile-picture" src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-xpf1/v/t1.0-9/1385793_699317240086719_965516295_n.jpg?oh=681e978846867d3890b04dfa2aba43c4&amp;oe=56703445&amp;__gda__=1450247180_8c072e21e6114262dd761e86b9609259"/>
+            </a>
+            <span class="sidebar-profile-name">Mike Chen</span>
+        </div>
+    
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/ "
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc">Home</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-categories"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                    <span class="sidebar-button-desc">Categories</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-tags"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc">Tags</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://github.com/eva0919" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc">GitHub</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://www.linkedin.com/profile/preview?locale=en_US&trk=prof-0-sb-preview-primary-button" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+                    <span class="sidebar-button-desc">LinkedIn</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/atom.xml"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+
+            
+            <div id="main" data-behavior="4"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title" itemprop="headline">
+            Function 參數 與 Hoisting的順序Function 參數 與 Hoisting的順序
+        </h1>
+    
+    <div class="post-meta">
+    <time itemprop="datePublished" content="Thu Nov 26 2015 22:48:26 GMT+0800">
+	
+		    Nov 26, 2015
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/tech/">tech</a>
+
+
+    
+</div>
+</div>
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <p>這是一個很有趣的議題，至少我查了網路不好找到(因為我找不到，只好自己測試了)<br>底下這邊是一段JS的CODE，可以看一下後，想像它的結果。<br><a id="more"></a><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">myname = <span class="string">"global"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> setup = <span class="function"><span class="keyword">function</span> (<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">console</span>.log(myname);</span><br><span class="line">	<span class="built_in">console</span>.log(b);</span><br><span class="line">	<span class="built_in">console</span>.log(a);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> myname = <span class="string">"local"</span>;</span><br><span class="line">	<span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">"function!"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">var</span> b = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">"hi"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">console</span>.log(a);</span><br><span class="line">	<span class="built_in">console</span>.log(myname);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">setup(<span class="number">5</span>,<span class="number">6</span>);</span><br></pre></td></tr></table></figure>    </p>
+<p>這段CODE牽扯到function的hoisting，如果這邊不知道是甚麼，建議就先去GOOGLE一下這個關鍵字。<br>而這段CODE的輸出會如下方表示:<br><figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-<span class="ruby">&gt; undefined</span><br><span class="line"></span>-<span class="ruby">&gt; function b()&#123;</span><br><span class="line"></span> 		console.log("function!");</span><br><span class="line">   &#125;</span><br><span class="line">-<span class="ruby">&gt; <span class="number">5</span></span><br><span class="line"></span>-<span class="ruby">&gt; <span class="number">1</span></span><br><span class="line"></span>-<span class="ruby">&gt; local</span></span><br></pre></td></tr></table></figure>        </p>
+<p>來一一解釋。照一般網路上寫的hoisting的話，變數的宣告以及具名函式的宣告實作都會往上提到最前面，因此應該會變成下面這個樣子。    </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">myname = <span class="string">"global"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> setup = <span class="function"><span class="keyword">function</span> (<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> myname;</span><br><span class="line">	<span class="keyword">var</span> a;</span><br><span class="line">	<span class="keyword">var</span> b;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">"function!"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">console</span>.log(myname);</span><br><span class="line">	<span class="built_in">console</span>.log(b);</span><br><span class="line">	<span class="built_in">console</span>.log(a);</span><br><span class="line"></span><br><span class="line">	myname = <span class="string">"local"</span>;</span><br><span class="line">	a = <span class="number">1</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">var</span> b = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">"hi"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">console</span>.log(a);</span><br><span class="line">	<span class="built_in">console</span>.log(myname);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">setup(<span class="number">5</span>,<span class="number">6</span>);</span><br></pre></td></tr></table></figure>    
+<p>經過這樣的測試，也可以發現變數宣告會被提到比具名函示宣告實作還要上面，不然一開始的console.log(b)的輸出結果，就不會是一個function物件，而是undefined了。<br>這邊myname則就是基本概念一樣，因為被重新宣告了，所以外面的全域變數，就不會是這個setup function所指到的變數，因此console.log(myname)就會是undefined(畢竟只有宣告，卻沒有說他是甚麼)<br>而這邊最好玩的莫過於a這個變數，以及本文中要介紹的function傳入後的參數會在甚麼時候指派給對應的變數。在變數b的介紹時，刻意沒有去提到，大家會發現，我在執行setup這個function的時候，是有傳入參數的，分別是5和6，而在function中接的變數名稱則是a和b。從結果可以發現，傳入的參數並不會比宣告變數還在指派給對應的變數，因為如果是這樣的話，第一個console.log(a)所輸出的結果也應該是undefined，但是他偏偏是5，而第一個console.log(b)卻不是6，而是我們的具名函式，因此，我們總結一下，參數傳入以後會在hoisting過的變數宣告之後，但在具名函式宣告實作之前。統整後的結果就會是下面這樣:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">myname = <span class="string">"global"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> setup = <span class="function"><span class="keyword">function</span> (<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> myname;</span><br><span class="line">	<span class="keyword">var</span> a;</span><br><span class="line">	<span class="keyword">var</span> b;</span><br><span class="line">	a = a; <span class="comment">//(後面的a是function傳入的參數，例子中的5)</span></span><br><span class="line">	b = b; <span class="comment">//(後面的b是function傳入的參數，例子中的6)</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">"function!"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">console</span>.log(myname);</span><br><span class="line">	<span class="built_in">console</span>.log(b);</span><br><span class="line">	<span class="built_in">console</span>.log(a);</span><br><span class="line"></span><br><span class="line">	myname = <span class="string">"local"</span>;</span><br><span class="line">	a = <span class="number">1</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">var</span> b = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">"hi"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">console</span>.log(a);</span><br><span class="line">	<span class="built_in">console</span>.log(myname);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">setup(<span class="number">5</span>,<span class="number">6</span>);</span><br></pre></td></tr></table></figure>    </p>
+<p>每次看完這些規則後的結論就是，不要把變數的名稱都取一樣就不會有困擾了。</p>
+
+            
+                
+
+            
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/tech/">tech</a>
+
+            </div>
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/10/20/用VM才是好的工程師-vagrant篇-入門版/" data-tooltip="用VM才是好的工程師-vagrant篇(入門版)">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/26/Function-參數-與-Hoisting的順序Function-參數-與-Hoisting的順序/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/26/Function-參數-與-Hoisting的順序Function-參數-與-Hoisting的順序/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/26/Function-參數-與-Hoisting的順序Function-參數-與-Hoisting的順序/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2015 Mike Chen. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/10/20/用VM才是好的工程師-vagrant篇-入門版/" data-tooltip="用VM才是好的工程師-vagrant篇(入門版)">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/26/Function-參數-與-Hoisting的順序Function-參數-與-Hoisting的順序/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/26/Function-參數-與-Hoisting的順序Function-參數-與-Hoisting的順序/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/26/Function-參數-與-Hoisting的順序Function-參數-與-Hoisting的順序/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+    <ul class="share-options">
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/26/Function-參數-與-Hoisting的順序Function-參數-與-Hoisting的順序/">
+                <i class="fa fa-google-plus"></i><span class="">Share on Google Plus</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/26/Function-參數-與-Hoisting的順序Function-參數-與-Hoisting的順序/">
+                <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/26/Function-參數-與-Hoisting的順序Function-參數-與-Hoisting的順序/">
+                <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+            
+        </div>
+        <!-- Define author's picture -->
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-xpf1/v/t1.0-9/1385793_699317240086719_965516295_n.jpg?oh=681e978846867d3890b04dfa2aba43c4&amp;oe=56703445&amp;__gda__=1450247180_8c072e21e6114262dd761e86b9609259"/>
+        
+            <h4 id="about-card-name">Mike Chen</h4>
+        
+            <h5 id="about-card-bio"><p><a href='http://eva0919.github.io/aboutme'>ABOUT ME</a></p>
+</h5>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>Software Developer</p>
+
+            </h5>
+        
+        
+    </div>
+</div>
+
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="/assets/js/jquery.js" type="text/javascript"></script>
+<script src="/assets/js/jquery.fancybox.js" type="text/javascript"></script>
+<script src="/assets/js/jquery.fancybox-thumbs.js" type="text/javascript"></script>
+<script src="/assets/js/tranquilpeak.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+
+
+</html>
